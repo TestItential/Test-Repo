@@ -1,0 +1,505 @@
+{
+  "name": "Demo: Run Command Template Using Ansible",
+  "type": "automation",
+  "tasks": {
+    "8979": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Prepare Run Command Template Payload",
+      "description": "Prepare Run Command Template Payload",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "642f2ddde3b63401f7c40ca3",
+          "variableMap": {
+            "MySessionResponse": "$var.job.my_session_response",
+            "iap_hostname": "host.docker.internal",
+            "iap_port": 3212,
+            "pre_defined_command_template": "$var.job.pre_defined_command_template",
+            "return_command_response": "$var.job.return_command_response"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": false,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "playbook_args": null
+        },
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "description",
+          "highlightString": "Perform a JSON Transformation using the <span class='highlight-string'>JST</span> library."
+        }
+      ],
+      "groups": [],
+      "x": 0.3550784475639967,
+      "y": 0.4961154273029967,
+      "task_name": "Prepare Run Command Template Payload",
+      "retrySettings": null
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.24530168150346193,
+      "y": 0.49944506104328523
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.4817012858555885,
+      "y": 0.49278579356270813
+    },
+    "f94f": {
+      "name": "runPlaybook",
+      "canvasName": "runPlaybook",
+      "summary": "Run a playbook in Automation Gateway",
+      "description": "This method will run a playbook in Automation Gateway",
+      "location": "Adapter",
+      "locationType": "AutomationGateway",
+      "app": "AutomationGateway",
+      "type": "automatic",
+      "displayName": "AutomationGateway",
+      "variables": {
+        "incoming": {
+          "playbookName": "run_command_template",
+          "hosts": "",
+          "groups": "",
+          "args": "$var.8979.playbook_args",
+          "template": "",
+          "adapter_id": "automation-gateway-local"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>runPlaybook</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.7060280759702725,
+      "y": 0.5027746947835738,
+      "scheduled": false
+    },
+    "170d": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "return_command_response",
+          "value": true
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>new</span><span class='highlight-string'>Vari</span>able"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>new</span> Job <span class='highlight-string'>vari</span>able by Job ID and assign it a value."
+        },
+        {
+          "key": "summary",
+          "highlightString": "Create a Job <span class='highlight-string'>Vari</span>able"
+        }
+      ],
+      "groups": [],
+      "x": 0.002967359050445104,
+      "y": 0.5027746947835738
+    },
+    "c954": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Return Response",
+      "description": "Query Return Response",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response[task=Return Command Template Response]results.ansible_facts.returnResponse",
+          "obj": "$var.f94f.result"
+        },
+        "outgoing": {
+          "return_data": "$var.job.command_template_response"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.9920870425321464,
+      "y": 0.5038845726970034,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "8979": {
+      "f94f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "170d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "f94f": {
+      "c954": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "170d": {
+      "8979": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c954": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "last_updated": "2023-05-10T03:55:37.807Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "4.1.2-2022.1.62.0",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "my_session_response": {
+        "$id": "MySessionResponse",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "ZjAzYjI4YzgyODBiMmI1NWZjMWI0Mzk2MmY1MDVjOTA="
+            ]
+          },
+          "loginMethod": {
+            "type": "string",
+            "examples": [
+              "Web"
+            ]
+          },
+          "session_start": {
+            "type": "integer",
+            "examples": [
+              1680789927706
+            ]
+          },
+          "ttl": {
+            "type": "integer",
+            "examples": [
+              1200
+            ]
+          },
+          "principalId": {
+            "type": "string",
+            "examples": [
+              "63b724f9e0fe6c1c7eb5f889"
+            ]
+          },
+          "userObj": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "examples": [
+                  "63b724ea0f92c1b7822bc4ae"
+                ]
+              },
+              "username": {
+                "type": "string",
+                "examples": [
+                  "admin@pronghorn"
+                ]
+              },
+              "activeTenant": {
+                "type": "string",
+                "examples": [
+                  "*"
+                ]
+              },
+              "firstname": {
+                "type": "string",
+                "examples": [
+                  "admin"
+                ]
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "examples": [
+                    "pronghorn_admin"
+                  ]
+                }
+              },
+              "password": {
+                "type": "string",
+                "examples": [
+                  "$2a$08$SLW8yGVhHUaXL5Hjgp30DOvYsY5Jx39AsiSzpUOnkSj6LId%2Ea5Afe"
+                ]
+              },
+              "tenants": {
+                "type": "array"
+              }
+            },
+            "required": []
+          },
+          "requestCount": {
+            "type": "integer",
+            "examples": [
+              109
+            ]
+          }
+        },
+        "required": []
+      },
+      "pre_defined_command_template": {
+        "$id": "pre_defined_command_template",
+        "type": "object",
+        "properties": {
+          "commandTemplate": {
+            "type": "string",
+            "examples": [
+              "IOS XR Show Version"
+            ]
+          },
+          "devices": {
+            "type": "string",
+            "examples": [
+              "[\"IOSXRPBLT-1673039653000\"]"
+            ]
+          },
+          "commandTemplateVariables": {
+            "type": "string",
+            "examples": [
+              "{\"version\":\"version\"}"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    "required": [
+      "my_session_response",
+      "pre_defined_command_template"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "my_session_response": {
+        "$id": "MySessionResponse",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "ZjAzYjI4YzgyODBiMmI1NWZjMWI0Mzk2MmY1MDVjOTA="
+            ]
+          },
+          "loginMethod": {
+            "type": "string",
+            "examples": [
+              "Web"
+            ]
+          },
+          "session_start": {
+            "type": "integer",
+            "examples": [
+              1680789927706
+            ]
+          },
+          "ttl": {
+            "type": "integer",
+            "examples": [
+              1200
+            ]
+          },
+          "principalId": {
+            "type": "string",
+            "examples": [
+              "63b724f9e0fe6c1c7eb5f889"
+            ]
+          },
+          "userObj": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "examples": [
+                  "63b724ea0f92c1b7822bc4ae"
+                ]
+              },
+              "username": {
+                "type": "string",
+                "examples": [
+                  "admin@pronghorn"
+                ]
+              },
+              "activeTenant": {
+                "type": "string",
+                "examples": [
+                  "*"
+                ]
+              },
+              "firstname": {
+                "type": "string",
+                "examples": [
+                  "admin"
+                ]
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "examples": [
+                    "pronghorn_admin"
+                  ]
+                }
+              },
+              "password": {
+                "type": "string",
+                "examples": [
+                  "$2a$08$SLW8yGVhHUaXL5Hjgp30DOvYsY5Jx39AsiSzpUOnkSj6LId%2Ea5Afe"
+                ]
+              },
+              "tenants": {
+                "type": "array"
+              }
+            },
+            "required": []
+          },
+          "requestCount": {
+            "type": "integer",
+            "examples": [
+              109
+            ]
+          }
+        },
+        "required": []
+      },
+      "pre_defined_command_template": {
+        "$id": "pre_defined_command_template",
+        "type": "object",
+        "properties": {
+          "commandTemplate": {
+            "type": "string",
+            "examples": [
+              "IOS XR Show Version"
+            ]
+          },
+          "devices": {
+            "type": "string",
+            "examples": [
+              "[\"IOSXRPBLT-1673039653000\"]"
+            ]
+          },
+          "commandTemplateVariables": {
+            "type": "string",
+            "examples": [
+              "{\"version\":\"version\"}"
+            ]
+          }
+        },
+        "required": []
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "return_command_response": {
+        "type": "boolean"
+      },
+      "command_template_response": {
+        "title": "return_data",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      }
+    }
+  },
+  "created": "2023-04-27T00:02:12.900Z",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.44.8-2021.2.68.0",
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 1
+}

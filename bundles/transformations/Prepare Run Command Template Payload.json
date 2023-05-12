@@ -1,0 +1,343 @@
+{
+  "_id": "642f2ddde3b63401f7c40ca3",
+  "name": "Prepare Run Command Template Payload",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "MySessionResponse",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "examples": [
+            "ZjAzYjI4YzgyODBiMmI1NWZjMWI0Mzk2MmY1MDVjOTA="
+          ]
+        },
+        "loginMethod": {
+          "type": "string",
+          "examples": [
+            "Web"
+          ]
+        },
+        "session_start": {
+          "type": "integer",
+          "examples": [
+            1680789927706
+          ]
+        },
+        "ttl": {
+          "type": "integer",
+          "examples": [
+            1200
+          ]
+        },
+        "principalId": {
+          "type": "string",
+          "examples": [
+            "63b724f9e0fe6c1c7eb5f889"
+          ]
+        },
+        "userObj": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "examples": [
+                "63b724ea0f92c1b7822bc4ae"
+              ]
+            },
+            "username": {
+              "type": "string",
+              "examples": [
+                "admin@pronghorn"
+              ]
+            },
+            "activeTenant": {
+              "type": "string",
+              "examples": [
+                "*"
+              ]
+            },
+            "firstname": {
+              "type": "string",
+              "examples": [
+                "admin"
+              ]
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "examples": [
+                  "pronghorn_admin"
+                ]
+              }
+            },
+            "password": {
+              "type": "string",
+              "examples": [
+                "$2a$08$SLW8yGVhHUaXL5Hjgp30DOvYsY5Jx39AsiSzpUOnkSj6LId%2Ea5Afe"
+              ]
+            },
+            "tenants": {
+              "type": "array"
+            }
+          },
+          "required": []
+        },
+        "requestCount": {
+          "type": "integer",
+          "examples": [
+            109
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "iap_hostname",
+      "type": "string",
+      "examples": [
+        "host%2Edocker%2Einternal"
+      ]
+    },
+    {
+      "$id": "iap_port",
+      "type": "number",
+      "examples": [
+        3212
+      ]
+    },
+    {
+      "$id": "pre_defined_command_template",
+      "type": "object",
+      "properties": {
+        "commandTemplate": {
+          "type": "string",
+          "examples": [
+            "IOS XR Show Version"
+          ]
+        },
+        "devices": {
+          "type": "string",
+          "examples": [
+            "[\"IOSXRPBLT-1673039653000\"]"
+          ]
+        },
+        "commandTemplateVariables": {
+          "type": "string",
+          "examples": [
+            "{\"version\":\"version\"}"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "return_command_response",
+      "type": "string",
+      "examples": [
+        "false"
+      ]
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "playbook_args",
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "examples": [
+            "ZjAzYjI4YzgyODBiMmI1NWZjMWI0Mzk2MmY1MDVjOTA="
+          ]
+        },
+        "iap_hostname": {
+          "type": "string",
+          "examples": [
+            "host%2Edocker%2Einternal"
+          ]
+        },
+        "iap_port": {
+          "type": "string",
+          "examples": [
+            "3212"
+          ]
+        },
+        "command_template": {
+          "type": "string",
+          "examples": [
+            "IOS XR Show Version"
+          ]
+        },
+        "variables": {
+          "type": "string",
+          "examples": [
+            "{\"version\":\"version\"}"
+          ]
+        },
+        "devices": {
+          "type": "string",
+          "examples": [
+            "[\"IOSXRPBLT-1673039653000\"]"
+          ]
+        },
+        "return_command_response": {
+          "type": "string",
+          "examples": [
+            "false"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "MySessionResponse",
+        "ptr": "/id"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/token"
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iap_hostname",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/iap_hostname"
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "pre_defined_command_template",
+        "ptr": "/commandTemplate"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/command_template"
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "pre_defined_command_template",
+        "ptr": "/devices"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/devices"
+      }
+    },
+    {
+      "id": 7,
+      "type": "method",
+      "library": "Number",
+      "method": "toString",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iap_port",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/iap_port"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "pre_defined_command_template",
+        "ptr": "/commandTemplateVariables"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/variables"
+      }
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "return_command_response",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "playbook_args",
+        "ptr": "/return_command_response"
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2023-05-10T03:55:37.735Z",
+  "createdBy": {
+    "_id": "645b11a31dfcbd6bf8a05133",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-05-10T03:55:37.735Z",
+  "lastUpdatedBy": {
+    "_id": "645b11a31dfcbd6bf8a05133",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "3.23.3-2022.1.15",
+  "tags": []
+}

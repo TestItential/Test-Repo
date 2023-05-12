@@ -1,0 +1,159 @@
+{
+  "created": "2023-04-14T15:06:41.607Z",
+  "createdVersion": "5.44.8-2021.2.68.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "description": null,
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "lastUpdatedVersion": "5.44.64-2022.1.33.0",
+  "last_updated": "2023-05-10T14:27:38.775Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "name": "Demo: Command Template on Device",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      }
+    }
+  },
+  "preAutomationTime": 60000,
+  "sla": 0,
+  "tasks": {
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": 0.4028324154209284,
+      "y": 0.23745819397993312
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.0197740112994351,
+      "y": 0.2528301886792453
+    },
+    "a0c0": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Demo: Run Command Template Using Ansible",
+          "variables": {
+            "my_session_response": {
+              "editable": true,
+              "task": "static",
+              "value": {}
+            },
+            "pre_defined_command_template": {
+              "editable": true,
+              "task": "968b",
+              "value": "merged_object"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.8216350123864574,
+      "y": 0.23640399556048836
+    },
+    "968b": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge Data",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "commandTemplateVariables",
+              "value": {
+                "task": "static",
+                "variable": "Test"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5829892650701899,
+      "y": 0.23751387347391786
+    }
+  },
+  "transitions": {
+    "7180": {},
+    "workflow_start": {
+      "968b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "b0ba": {},
+    "fe48": {},
+    "e21d": {},
+    "8b7f": {},
+    "c8be": {},
+    "7bfb": {},
+    "e1c0": {},
+    "cd2f": {},
+    "a0c0": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "968b": {
+      "a0c0": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 1
+}

@@ -1,0 +1,35 @@
+{
+  "bundleName": "@local/demo-run-command-template",
+  "version": "0.0.1",
+  "fingerprint": "645e705ce38f2e0117ff4de1",
+  "createdEpoch": "1683910748490",
+  "artifacts": [
+    {
+      "id": "Demo: Command Template on Device",
+      "name": "Demo: Command Template on Device",
+      "type": "workflow",
+      "location": "/bundles/workflows/Demo: Command Template on Device.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Demo: Run Command Template Using Ansible",
+      "name": "Demo: Run Command Template Using Ansible",
+      "type": "workflow",
+      "location": "/bundles/workflows/Demo: Run Command Template Using Ansible.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "642f2ddde3b63401f7c40ca3",
+      "name": "Prepare Run Command Template Payload",
+      "type": "transformation",
+      "location": "/bundles/transformations/Prepare Run Command Template Payload.json",
+      "properties": {
+        "entryPoint": false
+      }
+    }
+  ]
+}
