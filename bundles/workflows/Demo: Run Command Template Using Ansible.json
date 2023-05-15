@@ -34,12 +34,6 @@
         "decorators": []
       },
       "deprecated": false,
-      "matched": [
-        {
-          "key": "description",
-          "highlightString": "Perform a JSON Transformation using the <span class='highlight-string'>JST</span> library."
-        }
-      ],
       "groups": [],
       "x": 0.3550784475639967,
       "y": 0.4961154273029967,
@@ -84,12 +78,6 @@
         "decorators": []
       },
       "deprecated": false,
-      "matched": [
-        {
-          "key": "canvasName",
-          "highlightString": "<span class='highlight-string'>runPlaybook</span>"
-        }
-      ],
       "groups": [],
       "actor": "Pronghorn",
       "x": 0.7060280759702725,
@@ -116,20 +104,6 @@
         }
       },
       "deprecated": false,
-      "matched": [
-        {
-          "key": "canvasName",
-          "highlightString": "<span class='highlight-string'>new</span><span class='highlight-string'>Vari</span>able"
-        },
-        {
-          "key": "description",
-          "highlightString": "Create a <span class='highlight-string'>new</span> Job <span class='highlight-string'>vari</span>able by Job ID and assign it a value."
-        },
-        {
-          "key": "summary",
-          "highlightString": "Create a Job <span class='highlight-string'>Vari</span>able"
-        }
-      ],
       "groups": [],
       "x": 0.002967359050445104,
       "y": 0.5027746947835738
@@ -137,8 +111,8 @@
     "c954": {
       "name": "query",
       "canvasName": "query",
-      "summary": "Query Return Response",
-      "description": "Query Return Response",
+      "summary": "Query Command Template Return Response",
+      "description": "Query Command Template  Return Response",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -157,20 +131,6 @@
         "decorators": []
       },
       "deprecated": false,
-      "matched": [
-        {
-          "key": "canvasName",
-          "highlightString": "<span class='highlight-string'>query</span>"
-        },
-        {
-          "key": "summary",
-          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
-        },
-        {
-          "key": "description",
-          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
-        }
-      ],
       "groups": [],
       "x": 0.9920870425321464,
       "y": 0.5038845726970034,
@@ -211,14 +171,14 @@
     }
   },
   "font_size": 12,
-  "last_updated": "2023-05-10T03:55:37.807Z",
+  "last_updated": "2023-05-15T15:16:44.831Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "lastUpdatedVersion": "4.1.2-2022.1.62.0",
+  "lastUpdatedVersion": "5.44.64-2022.1.33.0",
   "inputSchema": {
     "type": "object",
     "properties": {
