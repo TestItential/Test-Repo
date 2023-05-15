@@ -1,8 +1,8 @@
 {
   "bundleName": "@local/demo-run-command-template",
   "version": "0.0.1",
-  "fingerprint": "645e705ce38f2e0117ff4de1",
-  "createdEpoch": "1683910748490",
+  "fingerprint": "64624f9fe38f2e0117ff4de5",
+  "createdEpoch": "1684164511708",
   "artifacts": [
     {
       "id": "Demo: Command Template on Device",
